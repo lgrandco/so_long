@@ -10,7 +10,9 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror -g3
 
-LBS = -L minilibx-linux/ -lmlx -lX11 -lXext
+FSAN = ${FLAGS} -fsanitize=address
+
+LBS = -L ./minilibx-linux/ -lmlx -lX11 -lXext
 
 .c.o:
 			${CC} ${FLAGS} -c $< -o ${<:.c=.o} ${LBS} ${INCLUDES}
@@ -19,6 +21,9 @@ all:        ${NAME}
 
 ${NAME}:    ${MY_OBJECTS}
 			${CC} ${FLAGS} -o ${NAME} ${MY_OBJECTS} ${LBS}
+
+fsan:		${MY_OBJECTS}
+			${CC} ${FSAN} -o ${NAME} ${MY_OBJECTS} ${LBS}
 
 install:
 			sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
