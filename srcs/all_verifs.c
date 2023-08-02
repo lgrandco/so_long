@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 14:31:34 by root              #+#    #+#             */
-/*   Updated: 2023/08/02 22:03:53 by root             ###   ########.fr       */
+/*   Updated: 2023/08/02 22:34:42 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ int	loop_to_end_of_buff(t_list *node, t_vars *vars, int *i, int *j)
 			vars->map_exit++;
 		else if (c == 'P')
 			vars->map_start++;
-		else if (c != '\n' && c != '1' && c != '0' && c != 'C')
+		else if (c == 'C')
+			vars->map_items++;
+		else if (c != '\n' && c != '1' && c != '0')
 			return (-1);
 		(*i)++;
 		(*j)++;
@@ -96,7 +98,8 @@ int	verif_map(t_vars *vars)
 		loop_to_end_of_buff(node, vars, &i, &j);
 		node = node->next;
 	}
-	if (vars->map_exit != 1 || vars->map_start != 1 || !vars->last_line_is_wall)
+	if (vars->map_exit != 1 || vars->map_start != 1 || !vars->map_items
+		|| !vars->last_line_is_wall)
 		destroy_exit(vars, "Error\nCorrupted map\n");
 	if (vars->map_width * 16 > vars->screen_width || vars->map_height
 		* 16 > vars->screen_height)
