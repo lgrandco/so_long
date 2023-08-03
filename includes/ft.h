@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 19:56:42 by root              #+#    #+#             */
-/*   Updated: 2023/08/02 22:02:42 by root             ###   ########.fr       */
+/*   Updated: 2023/08/03 00:53:16 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int					move_right(t_vars *vars);
 t_list				*get_file(char *file);
 int					keyboard(int keycode, t_vars *vars);
 int					destroy_exit(t_vars *vars, char *str);
+int					destroy_exit_event(t_vars *vars);
 int					resize(t_vars *vars);
 
 #endif // !FT_H

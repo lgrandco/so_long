@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:43:01 by root              #+#    #+#             */
-/*   Updated: 2023/08/02 22:09:51 by root             ###   ########.fr       */
+/*   Updated: 2023/08/03 00:53:57 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ int	keyboard(int keycode, t_vars *vars)
 		printf("%d\n", vars->move_counter);
 	}
 	return (0);
+}
+
+int	destroy_exit_event(t_vars *vars)
+{
+	if (vars->win)
+		mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->file);
+	free(vars->mlx);
+	exit(0);
 }
 
 int	destroy_exit(t_vars *vars, char *str)
