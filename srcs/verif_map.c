@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 14:31:34 by root              #+#    #+#             */
-/*   Updated: 2023/08/03 06:31:16 by root             ###   ########.fr       */
+/*   Updated: 2023/08/03 19:12:14 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	verif_end_of_line(t_list *node, t_vars *vars, int *i, int *j)
 	{
 		if (*i + 1 != node->len)
 			vars->last_line_is_wall = 1;
-		if ((vars->map_width != -1 && *j != vars->map_width) || (node->str)[*i
-			- 1] != '1')
+		if ((vars->map_width != -1 && *j != vars->map_width) || !*i
+			|| (node->str)[*i - 1] != '1')
 			destroy_exit(vars, "Error\nCorrupted map\n");
 		vars->map_width = *j;
 		*j = -1;
@@ -97,12 +97,11 @@ int	verif_map(t_vars *vars)
 	int		j;
 	int		i;
 
-	vars->parsing_x = 0;
-	vars->parsing_y = 0;
-	vars->map_exit = 0;
-	vars->map_start = 0;
+	init_map(vars);
 	mlx_get_screen_size(vars->mlx, &vars->screen_width, &vars->screen_height);
 	j = 0;
+	if (!vars->file->len)
+		destroy_exit(vars, "Error\nCorrupted map\n");
 	node = vars->file;
 	while (node)
 	{

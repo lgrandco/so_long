@@ -1,6 +1,6 @@
 NAME = so_long
 
-MY_SOURCES    = srcs/main.c srcs/verif_map.c srcs/parsing.c srcs/moves.c srcs/get_file.c srcs/minilibx_events.c srcs/verif_path.c
+MY_SOURCES    = srcs/main.c srcs/verif_map.c srcs/parsing.c srcs/moves.c srcs/get_file.c srcs/minilibx_events.c srcs/verif_path.c srcs/init_map.c
 
 MY_OBJECTS    = $(MY_SOURCES:.c=.o)
 

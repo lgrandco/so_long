@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 04:30:12 by root              #+#    #+#             */
-/*   Updated: 2023/08/03 12:50:24 by root             ###   ########.fr       */
+/*   Updated: 2023/08/03 18:16:45 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	dfs(t_vars *vars, int x, int y)
 	if ((vars->file->str)[pos] == 'C')
 		vars->path_items++;
 	if ((vars->file->str)[pos] == 'E')
+	{
 		vars->path_exit++;
+		return ;
+	}
 	dfs(vars, x + 1, y);
 	dfs(vars, x - 1, y);
 	dfs(vars, x, y + 1);

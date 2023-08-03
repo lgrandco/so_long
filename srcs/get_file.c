@@ -6,13 +6,13 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:15:05 by root              #+#    #+#             */
-/*   Updated: 2023/08/02 22:23:25 by root             ###   ########.fr       */
+/*   Updated: 2023/08/03 19:08:58 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-void	ft_open_file(char *file, t_list *ret)
+void	ft_open_file(char *file, t_list *ret, t_list **node)
 {
 	ret->fd = open(file, O_RDONLY);
 	if (ret->fd < 0)
@@ -20,6 +20,9 @@ void	ft_open_file(char *file, t_list *ret)
 		free(ret);
 		destroy_exit(0, "Error\nMap not found\n");
 	}
+	*node = ret;
+	ret->len = 0;
+	ret->read_ret = 1;
 }
 
 t_list	*get_file(char *file)
@@ -28,9 +31,7 @@ t_list	*get_file(char *file)
 	t_list	*node;
 
 	ret = malloc(sizeof(*ret));
-	ft_open_file(file, ret);
-	node = ret;
-	ret->read_ret = 1;
+	ft_open_file(file, ret, &node);
 	while (ret->read_ret > 0)
 	{
 		if (ret->read_ret == SIZE)

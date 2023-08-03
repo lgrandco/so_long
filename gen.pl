@@ -4,13 +4,16 @@ use strict;
 die "program x y (max is 120x67 for fullHD screen) wall_density( y/5 recommanded ) item_density ( y/10 recommanded )" unless (scalar(@ARGV) == 4);
 my ($x, $y, $wall_density, $item_density) = @ARGV;
 # print "$y.ox\n";
+if ($x<=3 and $y<=3){
+    die "gen.pl: Error: Incorrect dimensions\n"
+}
 for (my $i = 0; $i < $x; $i++){
     print "1";
 }
 print "\n";
 my @exit_=(int(rand($x-2) + 1),int(rand($y-2) + 1));
 my @start=(int(rand($x-2) + 1),int(rand($y-2) + 1));
-while ($start[0]==$exit_[0]){
+while ($start[0]==$exit_[0] and $start[1]==$exit_[1]){
     @start=(int(rand($x-2) + 1),int(rand($y-2) + 1));
 }
 for (my $i = 1; $i < $y-1; $i++) {

@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 19:56:42 by root              #+#    #+#             */
-/*   Updated: 2023/08/03 06:01:52 by root             ###   ########.fr       */
+/*   Updated: 2023/08/03 19:12:29 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int					destroy_exit(t_vars *vars, char *str);
 int					destroy_exit_event(t_vars *vars);
 int					resize(t_vars *vars);
 void				verif_path(t_vars *vars);
+void				init_map(t_vars *vars);
 
 #endif // !FT_H
