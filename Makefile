@@ -26,7 +26,7 @@ fsan:		${MY_OBJECTS}
 			${CC} ${FSAN} -o ${NAME} ${MY_OBJECTS} ${LBS}
 
 install:
-			sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
+			sudo apt update && sudo apt install gcc && sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
 
 clean:
 			rm -f ${MY_OBJECTS}
