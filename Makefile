@@ -14,6 +14,8 @@ FSAN = ${FLAGS} -fsanitize=address
 
 LBS = -L ./minilibx-linux/ -lmlx -lX11 -lXext
 
+MAKEFLAGS += --no-print-directory
+
 .c.o:
 			${CC} ${FLAGS} -c $< -o ${<:.c=.o} ${LBS} ${INCLUDES}
 
@@ -21,6 +23,9 @@ all:        ${NAME}
 
 ${NAME}:    ${MY_OBJECTS}
 			${CC} ${FLAGS} -o ${NAME} ${MY_OBJECTS} ${LBS}
+
+map:		
+			./map.sh 50 50 10 5	
 
 fsan:		${MY_OBJECTS}
 			${CC} ${FSAN} -o ${NAME} ${MY_OBJECTS} ${LBS}
