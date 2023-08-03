@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 04:30:12 by root              #+#    #+#             */
-/*   Updated: 2023/08/03 06:04:51 by root             ###   ########.fr       */
+/*   Updated: 2023/08/03 12:50:24 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ void	verif_path(t_vars *vars)
 	vars->path_items = 0;
 	dfs(vars, vars->player_pos_x, vars->player_pos_y);
 	if (vars->path_exit != 1 || vars->map_items != vars->path_items)
+	{
 		destroy_exit(vars, "Error\nNo correct path found\n");
+	}
 }

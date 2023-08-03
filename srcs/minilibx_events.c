@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:43:01 by root              #+#    #+#             */
-/*   Updated: 2023/08/03 11:16:08 by root             ###   ########.fr       */
+/*   Updated: 2023/08/03 12:51:08 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	keyboard(int keycode, t_vars *vars)
 	if (move_res)
 	{
 		vars->move_counter++;
-		printf("%d %d\n", vars->move_counter, move_res);
+		printf("%d\n", vars->move_counter);
 	}
 	return (0);
 }
