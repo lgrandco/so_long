@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_verifs.c                                       :+:      :+:    :+:   */
+/*   verif_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 14:31:34 by root              #+#    #+#             */
-/*   Updated: 2023/08/02 22:34:42 by root             ###   ########.fr       */
+/*   Updated: 2023/08/03 06:31:16 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	verif_move(int x, int y, t_vars *vars)
 	{
 		return (-1);
 	}
-	if ((vars->file->str)[pos] == 'C' && !(vars->file->visited)[pos])
+	if ((vars->file->str)[pos] == 'C' && !(vars->file->item_visited)[pos])
 	{
 		(vars->file->str)[pos] = 1;
 		vars->collected_items++;
@@ -49,12 +49,21 @@ int	verif_end_of_line(t_list *node, t_vars *vars, int *i, int *j)
 			destroy_exit(vars, "Error\nCorrupted map\n");
 		vars->map_width = *j;
 		*j = -1;
+		vars->parsing_x = -1;
+		vars->parsing_y++;
 		vars->map_height++;
 	}
 	return (0);
 }
 
-int	loop_to_end_of_buff(t_list *node, t_vars *vars, int *i, int *j)
+void	set_start(t_vars *vars)
+{
+	vars->player_pos_x = vars->parsing_x;
+	vars->player_pos_y = vars->parsing_y;
+	vars->map_start++;
+}
+
+void	loop_to_end_of_buff(t_list *node, t_vars *vars, int *i, int *j)
 {
 	char	c;
 
@@ -70,15 +79,16 @@ int	loop_to_end_of_buff(t_list *node, t_vars *vars, int *i, int *j)
 		if (c == 'E')
 			vars->map_exit++;
 		else if (c == 'P')
-			vars->map_start++;
+			set_start(vars);
 		else if (c == 'C')
 			vars->map_items++;
 		else if (c != '\n' && c != '1' && c != '0')
-			return (-1);
+			destroy_exit(vars, "Error\nCorrupted mapuwu\n");
+		(node->tile_visited)[*i] = 0;
 		(*i)++;
 		(*j)++;
+		vars->parsing_x++;
 	}
-	return (0);
 }
 
 int	verif_map(t_vars *vars)
@@ -87,6 +97,8 @@ int	verif_map(t_vars *vars)
 	int		j;
 	int		i;
 
+	vars->parsing_x = 0;
+	vars->parsing_y = 0;
 	vars->map_exit = 0;
 	vars->map_start = 0;
 	mlx_get_screen_size(vars->mlx, &vars->screen_width, &vars->screen_height);

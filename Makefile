@@ -1,6 +1,6 @@
 NAME = so_long
 
-MY_SOURCES    = srcs/main.c srcs/all_verifs.c srcs/parsing.c srcs/moves.c srcs/get_file.c srcs/minilibx_events.c
+MY_SOURCES    = srcs/main.c srcs/verif_map.c srcs/parsing.c srcs/moves.c srcs/get_file.c srcs/minilibx_events.c srcs/verif_path.c
 
 MY_OBJECTS    = $(MY_SOURCES:.c=.o)
 
@@ -8,7 +8,7 @@ INCLUDES = -I minilibx-linux/ -I includes/
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -g3
+FLAGS = -Wall -Wextra -Werror -g
 
 FSAN = ${FLAGS} -fsanitize=address
 

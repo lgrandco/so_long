@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 14:25:19 by root              #+#    #+#             */
-/*   Updated: 2023/08/02 22:33:26 by root             ###   ########.fr       */
+/*   Updated: 2023/08/03 04:47:01 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ void	ft_put_map_char(t_vars *vars, int x, int y)
 	else if ((vars->file->str)[(vars->map_width * y) + x + y] == 'C')
 	{
 		ft_put_file_to_window(*vars, "imgs/item.xpm", x, y);
-		(vars->file->visited)[(vars->map_width * y) + x + y] = 0;
+		(vars->file->item_visited)[(vars->map_width * y) + x + y] = 0;
 	}
 	else if ((vars->file->str)[(vars->map_width * y) + x + y] == 'P')
 	{
 		ft_put_file_to_window(*vars, "imgs/down.xpm", x, y);
-		vars->player_pos_x = x;
-		vars->player_pos_y = y;
 	}
 	else if ((vars->file->str)[(vars->map_width * y) + x + y] == 'E')
 		ft_put_file_to_window(*vars, "imgs/exit.xpm", x, y);

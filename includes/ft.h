@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 19:56:42 by root              #+#    #+#             */
-/*   Updated: 2023/08/03 00:53:16 by root             ###   ########.fr       */
+/*   Updated: 2023/08/03 06:01:52 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 typedef struct s_list
 {
 	char			str[SIZE];
-	int				visited[SIZE];
+	int				item_visited[SIZE];
+	int				tile_visited[SIZE];
 	int				len;
 	struct s_list	*next;
 	int				fd;
@@ -44,6 +45,8 @@ typedef struct s_vars
 	void			*mlx;
 	void			*win;
 	t_data			img;
+	int				parsing_x;
+	int				parsing_y;
 	int				player_pos_x;
 	int				player_pos_y;
 	t_list			*file;
@@ -57,6 +60,8 @@ typedef struct s_vars
 	int				screen_height;
 	int				screen_width;
 	int				move_counter;
+	int				path_exit;
+	int				path_items;
 }					t_vars;
 
 int					verif_move(int x, int y, t_vars *vars);
@@ -73,5 +78,6 @@ int					keyboard(int keycode, t_vars *vars);
 int					destroy_exit(t_vars *vars, char *str);
 int					destroy_exit_event(t_vars *vars);
 int					resize(t_vars *vars);
+void				verif_path(t_vars *vars);
 
 #endif // !FT_H
