@@ -4,4 +4,4 @@ if [ "$#" -ne 4 ]; then
     exit 1
 fi
 ./gen.pl $@ > maps/usr_generated_map.ber
-./so_long maps/usr_generated_map.ber
+valgrind ./so_long maps/usr_generated_map.ber

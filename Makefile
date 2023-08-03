@@ -8,13 +8,11 @@ INCLUDES = -I minilibx-linux/ -I includes/
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g3
 
 FSAN = ${FLAGS} -fsanitize=address
 
 LBS = -L ./minilibx-linux/ -lmlx -lX11 -lXext
-
-MAKEFLAGS += --no-print-directory
 
 .c.o:
 			${CC} ${FLAGS} -c $< -o ${<:.c=.o} ${LBS} ${INCLUDES}
