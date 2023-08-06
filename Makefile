@@ -15,7 +15,7 @@ FSAN = ${FLAGS} -fsanitize=address
 LBS = -L ./minilibx-linux/ -lmlx -lX11 -lXext
 
 .c.o:
-			${CC} ${FLAGS} -c $< -o ${<:.c=.o} ${LBS} ${INCLUDES}
+			${CC} ${FLAGS} -c $< -o ${<:.c=.o} ${INCLUDES}
 
 all:        ${NAME}
 
